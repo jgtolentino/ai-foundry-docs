@@ -1,0 +1,26 @@
+@import '@tabler/core/dist/css/tabler.min.css';
+@import '@tabler/core/dist/css/tabler-flags.min.css';
+@import '@tabler/core/dist/css/tabler-payments.min.css';
+@import '@tabler/core/dist/css/tabler-vendors.min.css';
+
+:root {
+  --suqi-primary: #3b82f6;
+  --suqi-secondary: #8b5cf6;
+  --suqi-dark: #1e293b;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.suqi-gradient {
+  background: linear-gradient(135deg, var(--suqi-primary) 0%, var(--suqi-secondary) 100%);
+}

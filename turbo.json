@@ -1,36 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": [
-    "NODE_ENV"
+    "NODE_ENV",
+    "NEXT_PUBLIC_SUPABASE_URL",
+    "NEXT_PUBLIC_SUPABASE_ANON_KEY"
   ],
-  "tasks": {
+  "pipeline": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "inputs": [
-        "shared/**",
-        "preview/**"
-      ],
-      "outputs": [
-        "dist/**"
-      ],
-      "cache": false
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", "build/**", ".next/**"]
     },
     "dev": {
       "cache": false,
-      "persistent": false
+      "persistent": true
+    },
+    "lint": {
+      "outputs": []
+    },
+    "typecheck": {
+      "outputs": []
+    },
+    "test": {
+      "outputs": ["coverage/**"]
     },
     "clean": {
-      "dependsOn": [
-        "^clean"
-      ],
       "cache": false
-    },
-    "bundlewatch": {
-      "dependsOn": [
-        "build"
-      ]
     }
   }
 }

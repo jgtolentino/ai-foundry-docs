@@ -1,0 +1,33 @@
+{
+  "name": "@suqi/web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@tabler/core": "^1.0.0",
+    "@tabler/icons-react": "^3.11.0",
+    "recharts": "^2.12.7",
+    "@supabase/supabase-js": "^2.45.0",
+    "@suqi/ui": "workspace:*",
+    "@suqi/charts": "workspace:*",
+    "@suqi/core": "workspace:*",
+    "@suqi/data": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.5",
+    "typescript": "^5"
+  }
+}
