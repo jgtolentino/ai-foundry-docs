@@ -20,6 +20,7 @@
     "@tabler/icons-react": "^3.11.0",
     "recharts": "^2.12.7",
     "@supabase/supabase-js": "^2.45.0",
+    "lucide-react": "^0.428.0",
     "@suqi/ui": "workspace:*",
     "@suqi/charts": "workspace:*",
     "@suqi/core": "workspace:*",
@@ -32,6 +33,9 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.5",
     "typescript": "^5",
+    "tailwindcss": "^3.4.0",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
     "@playwright/test": "^1.45.0",
     "@axe-core/playwright": "^4.9.0"
   }
