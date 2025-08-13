@@ -14,7 +14,10 @@
   },
   "packageManager": "pnpm@10.12.4",
   "dependencies": {
-    "shx": "^0.4.0"
+    "shx": "^0.4.0",
+    "next": "14.2.5",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@argos-ci/playwright": "^5.0.5",
