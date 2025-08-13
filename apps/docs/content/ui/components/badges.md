@@ -182,4 +182,4 @@ Use `.badge-sm` or `.badge-lg` to change badge size according to your needs. The
 
 ## More examples 
 
-If you want to see more examples of badges, you can check out the [Bootstrap documentation](https://getbootstrap.com/docs/5.3/components/badge/) for badges. You can also find more examples in the Tabler [Badges](https://preview.tabler.io/badges.html) preview.
+If you want to see more examples of badges, you can check out the [Bootstrap documentation](https://getbootstrap.com/docs/5.3/components/badge/) for badges. You can also find more examples in the Suqi [Badges](https://preview.suqi.io/badges.html) preview.

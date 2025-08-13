@@ -1,0 +1,64 @@
+# CODEOWNERS file for Suqi Analytics Platform
+# This file defines who is responsible for code in this repository
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default owners for everything in the repo
+* @suqi-platform/core-team
+
+# Documentation
+/apps/docs/ @suqi-platform/docs-team
+/README.md @suqi-platform/docs-team
+/CONTRIBUTING.md @suqi-platform/docs-team
+*.md @suqi-platform/docs-team
+
+# Web Application
+/apps/web/ @suqi-platform/frontend-team
+/apps/web/app/api/ @suqi-platform/backend-team
+/apps/web/app/(dashboard)/ask-suqi/ @suqi-platform/ai-team
+
+# Edge Functions
+/apps/edge/ @suqi-platform/backend-team
+/supabase/functions/ @suqi-platform/backend-team
+
+# Core Packages
+/packages/core/ @suqi-platform/core-team
+/packages/data/ @suqi-platform/data-team @suqi-platform/ai-team
+/packages/ui/ @suqi-platform/design-system-team
+/packages/charts/ @suqi-platform/data-viz-team
+
+# Configuration
+/packages/config/ @suqi-platform/devops-team
+/.github/ @suqi-platform/devops-team
+/turbo.json @suqi-platform/devops-team
+/pnpm-workspace.yaml @suqi-platform/devops-team
+
+# Database & Migrations
+/supabase/ @suqi-platform/data-team
+/supabase/migrations/ @suqi-platform/data-team @suqi-platform/backend-team
+/supabase/seed.sql @suqi-platform/data-team
+
+# Infrastructure & Deployment
+/vercel.json @suqi-platform/devops-team
+/.vercelignore @suqi-platform/devops-team
+/Dockerfile @suqi-platform/devops-team
+/.env.example @suqi-platform/devops-team
+
+# Testing
+/apps/web/tests/ @suqi-platform/qa-team
+/apps/web/playwright.config.ts @suqi-platform/qa-team
+*.test.* @suqi-platform/qa-team
+*.spec.* @suqi-platform/qa-team
+
+# Security
+/.env* @suqi-platform/security-team
+/supabase/.env* @suqi-platform/security-team
+**/auth/ @suqi-platform/security-team
+
+# AI/ML Components
+/packages/data/src/wren-ai/ @suqi-platform/ai-team
+/apps/web/app/api/ask-suqi/ @suqi-platform/ai-team
+
+# Visual Assets
+/apps/web/public/ @suqi-platform/design-system-team
+/apps/docs/public/img/ @suqi-platform/design-system-team
+/tools/generate-assets.js @suqi-platform/design-system-team

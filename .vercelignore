@@ -1,0 +1,61 @@
+# Vercel ignore file
+
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Build outputs (except the one we need)
+**/.next/
+**/dist/
+!apps/docs/dist/
+!apps/web/.next/
+
+# Development files
+**/.turbo/
+**/.cache/
+**/tmp/
+
+# Test files
+**/__tests__/
+**/*.test.*
+**/*.spec.*
+
+# Documentation source (we only need the built output)
+apps/docs/content/
+apps/docs/src/
+apps/docs/static/
+!apps/docs/dist/
+
+# Other apps/packages not being deployed
+packages/
+tools/
+supabase/
+apps/edge/
+
+# Config files not needed for deployment
+*.config.js
+*.config.mjs
+tsconfig.json
+.eslintrc*
+.prettierrc*
+
+# Git files
+.git/
+.gitignore
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env*
+!.env.production
+
+# Misc
+*.log
+*.md
+LICENSE

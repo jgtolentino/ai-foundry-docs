@@ -1,0 +1,26 @@
+<svg width="256" height="256" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="suqiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#206bc4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8b5cf6;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="url(#suqiGradient)" opacity="0.1"/>
+  
+  <!-- S letter stylized -->
+  <path d="M 40 40 Q 50 30, 64 30 T 88 40 Q 88 50, 64 56 Q 40 62, 40 72 Q 40 82, 50 88 T 78 94 Q 88 94, 88 88" 
+        fill="none" 
+        stroke="url(#suqiGradient)" 
+        stroke-width="8" 
+        stroke-linecap="round"/>
+  
+  <!-- Q dot -->
+  <circle cx="64" cy="64" r="4" fill="#206bc4"/>
+  
+  <!-- Analytics bars -->
+  <rect x="48" y="100" width="8" height="12" fill="#3b82f6" opacity="0.8"/>
+  <rect x="60" y="95" width="8" height="17" fill="#8b5cf6" opacity="0.8"/>
+  <rect x="72" y="90" width="8" height="22" fill="#206bc4" opacity="0.8"/>
+</svg>

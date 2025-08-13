@@ -128,7 +128,7 @@ You can use the modal to create a prompt or alert. Look at the example below to 
         <h3>Payment succeeded</h3>
         <div class="text-secondary">
           Your payment of $290 has been successfully submitted. Your invoice has been sent to
-          support@tabler.io.
+          support@suqi.io.
         </div>
       </div>
       <div class="modal-footer">
@@ -218,7 +218,7 @@ You can use the modal to create a form. Look at the example below to see how the
             <div class="mb-3">
               <label class="form-label">Report url</label>
               <div class="input-group input-group-flat">
-                <span class="input-group-text"> https://tabler.io/reports/ </span>
+                <span class="input-group-text"> https://suqi.io/reports/ </span>
                 <input type="text" class="form-control ps-0" value="report-01" autocomplete="off" />
               </div>
             </div>

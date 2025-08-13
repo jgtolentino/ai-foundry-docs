@@ -1,15 +1,15 @@
 ---
 title: Icons
-summary: Use any of over 5000 icons created specifically for Tabler and make your dashboard look even more attractive. All icons are under MIT license, so you can use them without any problem both in private and commercial projects.
+summary: Use any of over 5000 icons created specifically for Suqi and make your dashboard look even more attractive. All icons are under MIT license, so you can use them without any problem both in private and commercial projects.
 banner: icons
 description: Enhance dashboards with custom icons.
 ---
 
-If you need to add icons to your website, you can use the [Tabler Icons library]({{ site.icons.link }}). It contains over 5000 icons that you can use in your projects. All icons are under the MIT license, so you can use them without any problem both in private and commercial projects.
+If you need to add icons to your website, you can use the [Suqi Icons library]({{ site.icons.link }}). It contains over 5000 icons that you can use in your projects. All icons are under the MIT license, so you can use them without any problem both in private and commercial projects.
 
 ## Base icon
 
-To add an icon to your code copy the SVG code from the Tabler Icons website and paste it into your HTML file.
+To add an icon to your code copy the SVG code from the Suqi Icons website and paste it into your HTML file.
 
 ```html
 {% include "ui/icon.html" icon="heart" %}
@@ -27,7 +27,7 @@ Results can be seen in the example below.
 
 ## Filled icons
 
-To use filled icons, you need to copy the SVG code of the selected filled Icon from the [Tabler Icons website]({{ site.icons.link }}) and paste it into your HTML file.
+To use filled icons, you need to copy the SVG code of the selected filled Icon from the [Suqi Icons website]({{ site.icons.link }}) and paste it into your HTML file.
 
 {% capture html -%}
 {% include "ui/icon.html" icon="heart" type="filled" %}

@@ -450,12 +450,12 @@ Create a group of input controls and place add-ons on either side of an input.
   </div>
   <div class="input-group mb-2">
     <input type="text" class="form-control" placeholder="subdomain" autocomplete="off" />
-    <span class="input-group-text"> .tabler.io </span>
+    <span class="input-group-text"> .suqi.io </span>
   </div>
   <div class="input-group">
     <span class="input-group-text"> https:// </span>
     <input type="text" class="form-control" placeholder="subdomain" autocomplete="off" />
-    <span class="input-group-text"> .tabler.io </span>
+    <span class="input-group-text"> .suqi.io </span>
   </div>
 </div>
 {%- endcapture %}
@@ -492,7 +492,7 @@ Add text to your input control, either before or after the text which is to be e
 <div class="mb-3">
   <label class="form-label">Input with prepended text</label>
   <div class="input-group input-group-flat mb-2">
-    <span class="input-group-text"> https://tabler.io/users/ </span>
+    <span class="input-group-text"> https://suqi.io/users/ </span>
     <input type="text" class="form-control ps-0" value="yourfancyusername" autocomplete="off" />
   </div>
   <div class="input-group input-group-flat">
@@ -502,7 +502,7 @@ Add text to your input control, either before or after the text which is to be e
       value="yourfancydomain"
       autocomplete="off"
     />
-    <span class="input-group-text"> .tabler.io </span>
+    <span class="input-group-text"> .suqi.io </span>
   </div>
 </div>
 {%- endcapture %}

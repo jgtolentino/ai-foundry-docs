@@ -276,9 +276,9 @@ export default function (eleventyConfig) {
 	}
 
 	eleventyConfig.addGlobalData("docs-links", [
-		{ title: 'Website', url: 'https://tabler.io', icon: 'world' },
-		{ title: 'Preview', url: 'https://preview.tabler.io', icon: 'layout-dashboard' },
-		{ title: 'Support', url: 'https://tabler.io/support', icon: 'headset' },
+		{ title: 'Website', url: 'https://suqi.io', icon: 'world' },
+		{ title: 'Preview', url: 'https://preview.suqi.io', icon: 'layout-dashboard' },
+		{ title: 'Support', url: 'https://suqi.io/support', icon: 'headset' },
 	]);
 
 	/** 

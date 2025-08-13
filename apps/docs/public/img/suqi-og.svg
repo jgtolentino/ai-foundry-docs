@@ -1,0 +1,43 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#206bc4;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#f8fafc" stroke-width="0.5" opacity="0.1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+  
+  <!-- Logo -->
+  <g transform="translate(100, 200)">
+    <circle cx="80" cy="80" r="75" fill="#f8fafc" opacity="0.1"/>
+    <path d="M 50 50 Q 62.5 37.5, 80 37.5 T 110 50 Q 110 62.5, 80 70 Q 50 77.5, 50 90 Q 50 102.5, 62.5 110 T 97.5 117.5 Q 110 117.5, 110 110" 
+          fill="none" 
+          stroke="#f8fafc" 
+          stroke-width="10" 
+          stroke-linecap="round"/>
+    <circle cx="80" cy="80" r="5" fill="#f8fafc"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="320" y="280" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="#f8fafc">Suqi Analytics</text>
+  <text x="320" y="340" font-family="Arial, sans-serif" font-size="32" fill="#f8fafc" opacity="0.8">Enterprise Analytics Platform</text>
+  
+  <!-- Analytics visualization -->
+  <g transform="translate(800, 350)">
+    <rect x="0" y="80" width="40" height="120" fill="#3b82f6" opacity="0.7"/>
+    <rect x="60" y="40" width="40" height="160" fill="#8b5cf6" opacity="0.7"/>
+    <rect x="120" y="0" width="40" height="200" fill="#206bc4" opacity="0.7"/>
+    <rect x="180" y="60" width="40" height="140" fill="#f8fafc" opacity="0.7"/>
+    <rect x="240" y="100" width="40" height="100" fill="#3b82f6" opacity="0.7"/>
+  </g>
+</svg>

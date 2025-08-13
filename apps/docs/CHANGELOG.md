@@ -1,4 +1,4 @@
-# Tabler Documentation Changelog
+# Suqi Documentation Changelog
 
 ## 1.4.0
 
@@ -27,8 +27,8 @@
 - 8f70185: Improve Introduction, Base, Layout and Plugins sections in documentation
 - e546706: Fix input mask example in docs
 - 8850f61: Enhance pagination component with new styles
-- 8470c9b: Fix broken links to other docs section and tabler.io website; improve some labels.
-- 6a3513f: Fix links in Tabler Emails introduction, improve "How to contribute" and other small fixes
+- 8470c9b: Fix broken links to other docs section and suqi.io website; improve some labels.
+- 6a3513f: Fix links in Suqi Emails introduction, improve "How to contribute" and other small fixes
 - 278967b: Fix switch icon examples with filled icons in documentation
 - 38ea9aa: Use primary color for `::selection` inside `<code>` in docs
 - 5b3e201: Fix documentation: remove duplicated code examples; increase height of dropdown examples; fix some links
