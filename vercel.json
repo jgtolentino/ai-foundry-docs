@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "turbo run build --filter=@suqi/web",
+  "buildCommand": "cd apps/web && npm run build",
   "outputDirectory": "apps/web/.next",
-  "installCommand": "pnpm install",
+  "installCommand": "cd apps/web && npm install",
   "framework": "nextjs"
 }
