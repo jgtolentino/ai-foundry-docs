@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scout Analytics Platform</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #f8f9fa;
+            color: #344054;
+        }
+        
+        .app-container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar {
+            width: 260px;
+            background: #1e293b;
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            font-size: 20px;
+            font-weight: 700;
+        }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .nav-item.active {
+            background: #3b82f6;
+        }
+        
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 32px;
+        }
+        
+        .header {
+            margin-bottom: 32px;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        
+        .header p {
+            color: #64748b;
+            font-size: 16px;
+        }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .kpi-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .kpi-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .kpi-label {
+            font-size: 14px;
+            color: #64748b;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .kpi-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+        
+        .kpi-change {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .kpi-change.positive {
+            color: #10b981;
+        }
+        
+        .kpi-change.negative {
+            color: #ef4444;
+        }
+        
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 32px;
+        }
+        
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+        
+        .chart-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        .tab-container {
+            display: flex;
+            gap: 16px;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 24px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            border-bottom: 2px solid transparent;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 500;
+        }
+        
+        .tab:hover {
+            color: #0f172a;
+        }
+        
+        .tab.active {
+            color: #3b82f6;
+            border-bottom-color: #3b82f6;
+        }
+        
+        .performers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+        
+        .performer-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .performer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .performer-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        .performer-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .performer-rank {
+            width: 24px;
+            height: 24px;
+            background: #f3f4f6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+        
+        .performer-info {
+            flex: 1;
+        }
+        
+        .performer-name {
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+        
+        .performer-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        
+        .performer-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6 0%, #8b5cf6 100%);
+            transition: width 0.3s ease;
+        }
+        
+        .performer-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+        
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #e5e7eb;
+            font-weight: 600;
+            color: #64748b;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 16px 12px;
+            border-bottom: 1px solid #f3f4f6;
+            color: #0f172a;
+        }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-badge.active {
+            background: #d1fae5;
+            color: #065f46;
+        }
+        
+        .status-badge.warning {
+            background: #fed7aa;
+            color: #92400e;
+        }
+        
+        .status-badge.error {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+            
+            .main-content {
+                padding: 16px;
+            }
+            
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    
+    <script type="text/babel">
+        const { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend, Cell } = Recharts;
+        
+        const ScoutAnalyticsDashboard = () => {
+            const [activeTab, setActiveTab] = React.useState('performance');
+            const [activeNav, setActiveNav] = React.useState('stores');
+            
+            // Sample data for the line chart
+            const revenueData = [
+                { date: 'Jan 1', revenue: 125000 },
+                { date: 'Jan 8', revenue: 132000 },
+                { date: 'Jan 15', revenue: 128000 },
+                { date: 'Jan 22', revenue: 138000 },
+                { date: 'Jan 29', revenue: 142000 },
+                { date: 'Feb 5', revenue: 135000 },
+                { date: 'Feb 12', revenue: 148000 },
+                { date: 'Feb 19', revenue: 152000 },
+                { date: 'Feb 26', revenue: 146000 },
+                { date: 'Mar 5', revenue: 158000 },
+                { date: 'Mar 12', revenue: 162000 },
+                { date: 'Mar 19', revenue: 168000 },
+            ];
+            
+            // Top performers data
+            const topStores = [
+                { name: 'Manila Capital Hub', value: 856780, growth: 12.5 },
+                { name: 'Cebu Tech', value: 742350, growth: 8.3 },
+                { name: 'Davao South', value: 698420, growth: 15.2 },
+                { name: 'Makati Central', value: 612890, growth: -2.1 },
+            ];
+            
+            const topProducts = [
+                { name: 'Premium Laptops', value: 425000, units: 1250 },
+                { name: 'Smartphones', value: 385000, units: 3420 },
+                { name: 'Smart TVs', value: 342000, units: 890 },
+                { name: 'Gaming Consoles', value: 298000, units: 1560 },
+            ];
+            
+            const formatCurrency = (value) => {
+                return new Intl.NumberFormat('en-US', {
+                    style: 'currency',
+                    currency: 'PHP',
+                    minimumFractionDigits: 0,
+                    maximumFractionDigits: 0,
+                }).format(value);
+            };
+            
+            return (
+                <div className="app-container">
+                    {/* Sidebar */}
+                    <div className="sidebar">
+                        <div className="logo">
+                            <div className="logo-icon">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2">
+                                    <path d="M12 2L2 7V17L12 22L22 17V7L12 2Z" />
+                                </svg>
+                            </div>
+                            Scout Analytics
+                        </div>
+                        
+                        <nav>
+                            <div className={`nav-item ${activeNav === 'overview' ? 'active' : ''}`} onClick={() => setActiveNav('overview')}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <rect x="3" y="3" width="7" height="7" />
+                                    <rect x="14" y="3" width="7" height="7" />
+                                    <rect x="14" y="14" width="7" height="7" />
+                                    <rect x="3" y="14" width="7" height="7" />
+                                </svg>
+                                Overview
+                            </div>
+                            <div className={`nav-item ${activeNav === 'stores' ? 'active' : ''}`} onClick={() => setActiveNav('stores')}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M3 9L12 2L21 9V20C21 20.5304 20.7893 21.0391 20.4142 21.4142C20.0391 21.7893 19.5304 22 19 22H5C4.46957 22 3.96086 21.7893 3.58579 21.4142C3.21071 21.0391 3 20.5304 3 20V9Z" />
+                                </svg>
+                                Stores
+                            </div>
+                            <div className={`nav-item ${activeNav === 'products' ? 'active' : ''}`} onClick={() => setActiveNav('products')}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M21 16V8C20.9996 7.64927 20.9071 7.30481 20.7315 7.00116C20.556 6.69751 20.3037 6.44536 20 6.27V6.27L13 2.27C12.696 2.09446 12.3511 2.00205 12 2.00205C11.6489 2.00205 11.304 2.09446 11 2.27L4 6.27C3.69626 6.44536 3.44398 6.69751 3.26846 7.00116C3.09294 7.30481 3.00036 7.64927 3 8V16C3.00036 16.3507 3.09294 16.6952 3.26846 16.9988C3.44398 17.3025 3.69626 17.5546 4 17.73L11 21.73C11.304 21.9055 11.6489 21.998 12 21.998C12.3511 21.998 12.696 21.9055 13 21.73L20 17.73C20.3037 17.5546 20.556 17.3025 20.7315 16.9988C20.9071 16.6952 20.9996 16.3507 21 16Z" />
+                                </svg>
+                                Products
+                            </div>
+                            <div className={`nav-item ${activeNav === 'customers' ? 'active' : ''}`} onClick={() => setActiveNav('customers')}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" />
+                                    <circle cx="9" cy="7" r="4" />
+                                    <path d="M23 21V19C22.9993 18.1137 22.7044 17.2528 22.1614 16.5523C21.6184 15.8519 20.8581 15.3516 20 15.13" />
+                                    <path d="M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55232C18.7122 5.25392 19.0078 6.11683 19.0078 7.005C19.0078 7.89318 18.7122 8.75608 18.1676 9.45769C17.623 10.1593 16.8604 10.6597 16 10.88" />
+                                </svg>
+                                Customers
+                            </div>
+                            <div className={`nav-item ${activeNav === 'analytics' ? 'active' : ''}`} onClick={() => setActiveNav('analytics')}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M18 20V10" />
+                                    <path d="M12 20V4" />
+                                    <path d="M6 20V14" />
+                                </svg>
+                                Analytics
+                            </div>
+                            <div className={`nav-item ${activeNav === 'ai-insights' ? 'active' : ''}`} onClick={() => setActiveNav('ai-insights')}>
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M12 2L2 7L12 12L22 7L12 2Z" />
+                                    <path d="M2 17L12 22L22 17" />
+                                    <path d="M2 12L12 17L22 12" />
+                                </svg>
+                                AI Insights
+                            </div>
+                        </nav>
+                    </div>
+                    
+                    {/* Main Content */}
+                    <div className="main-content">
+                        <div className="header">
+                            <h1>Stores</h1>
+                            <p>425 locations • Monitor performance across all retail outlets</p>
+                        </div>
+                        
+                        {/* KPI Cards */}
+                        <div className="kpi-grid">
+                            <div className="kpi-card">
+                                <div className="kpi-label">Total Stores</div>
+                                <div className="kpi-value">425</div>
+                                <div className="kpi-change positive">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                    +3.5% from last month
+                                </div>
+                            </div>
+                            
+                            <div className="kpi-card">
+                                <div className="kpi-label">Average Revenue</div>
+                                <div className="kpi-value">₱125K</div>
+                                <div className="kpi-change positive">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                    +12.5% from last month
+                                </div>
+                            </div>
+                            
+                            <div className="kpi-card">
+                                <div className="kpi-label">Avg Daily Customers</div>
+                                <div className="kpi-value">156</div>
+                                <div className="kpi-change positive">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                        <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                                        <polyline points="17 6 23 6 23 12"></polyline>
+                                    </svg>
+                                    +8.2% from last month
+                                </div>
+                            </div>
+                            
+                            <div className="kpi-card">
+                                <div className="kpi-label">Peak Hour</div>
+                                <div className="kpi-value">2-4 PM</div>
+                                <div className="kpi-change" style={{color: '#64748b'}}>
+                                    No change vs last month
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {/* Revenue Trends Chart */}
+                        <div className="chart-container">
+                            <div className="chart-header">
+                                <h2 className="chart-title">Store Revenue Trends</h2>
+                            </div>
+                            <ResponsiveContainer width="100%" height={300}>
+                                <LineChart data={revenueData}>
+                                    <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                                    <XAxis dataKey="date" stroke="#94a3b8" />
+                                    <YAxis stroke="#94a3b8" tickFormatter={(value) => `₱${value/1000}k`} />
+                                    <Tooltip 
+                                        formatter={(value) => formatCurrency(value)}
+                                        contentStyle={{ 
+                                            backgroundColor: '#fff',
+                                            border: '1px solid #e5e7eb',
+                                            borderRadius: '8px'
+                                        }}
+                                    />
+                                    <Line 
+                                        type="monotone" 
+                                        dataKey="revenue" 
+                                        stroke="#3b82f6" 
+                                        strokeWidth={3}
+                                        dot={{ fill: '#3b82f6', r: 4 }}
+                                        activeDot={{ r: 6 }}
+                                    />
+                                </LineChart>
+                            </ResponsiveContainer>
+                        </div>
+                        
+                        {/* Tabs */}
+                        <div className="tab-container">
+                            <div className={`tab ${activeTab === 'performance' ? 'active' : ''}`} onClick={() => setActiveTab('performance')}>
+                                Performance
+                            </div>
+                            <div className={`tab ${activeTab === 'locations' ? 'active' : ''}`} onClick={() => setActiveTab('locations')}>
+                                Locations
+                            </div>
+                            <div className={`tab ${activeTab === 'traffic' ? 'active' : ''}`} onClick={() => setActiveTab('traffic')}>
+                                Traffic Patterns
+                            </div>
+                            <div className={`tab ${activeTab === 'inventory' ? 'active' : ''}`} onClick={() => setActiveTab('inventory')}>
+                                Inventory
+                            </div>
+                        </div>
+                        
+                        {/* Top Performers */}
+                        <div className="performers-grid">
+                            <div className="performer-card">
+                                <div className="performer-header">
+                                    <h3 className="performer-title">Top Performing Stores</h3>
+                                    <span style={{color: '#64748b', fontSize: '14px'}}>Last 30 days</span>
+                                </div>
+                                {topStores.map((store, index) => (
+                                    <div key={index} className="performer-item">
+                                        <div className="performer-rank">{index + 1}</div>
+                                        <div className="performer-info">
+                                            <div className="performer-name">{store.name}</div>
+                                            <div className="performer-bar">
+                                                <div 
+                                                    className="performer-bar-fill" 
+                                                    style={{width: `${(store.value / topStores[0].value) * 100}%`}}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div className="performer-value">{formatCurrency(store.value)}</div>
+                                            <div className={`kpi-change ${store.growth > 0 ? 'positive' : 'negative'}`} style={{fontSize: '12px', justifyContent: 'flex-end'}}>
+                                                {store.growth > 0 ? '+' : ''}{store.growth}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            
+                            <div className="performer-card">
+                                <div className="performer-header">
+                                    <h3 className="performer-title">Top Selling Products</h3>
+                                    <span style={{color: '#64748b', fontSize: '14px'}}>By revenue</span>
+                                </div>
+                                {topProducts.map((product, index) => (
+                                    <div key={index} className="performer-item">
+                                        <div className="performer-rank">{index + 1}</div>
+                                        <div className="performer-info">
+                                            <div className="performer-name">{product.name}</div>
+                                            <div style={{color: '#64748b', fontSize: '12px'}}>{product.units} units sold</div>
+                                            <div className="performer-bar">
+                                                <div 
+                                                    className="performer-bar-fill" 
+                                                    style={{width: `${(product.value / topProducts[0].value) * 100}%`}}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="performer-value">{formatCurrency(product.value)}</div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                        
+                        {/* Analytics Table */}
+                        <div className="table-container">
+                            <div className="performer-header" style={{marginBottom: '24px'}}>
+                                <h3 className="performer-title">Store Analytics</h3>
+                                <span style={{color: '#64748b', fontSize: '14px'}}>Real-time insights</span>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Store</th>
+                                        <th>Revenue</th>
+                                        <th>Customers</th>
+                                        <th>Avg Transaction</th>
+                                        <th>Status</th>
+                                        <th>Trend</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style={{fontWeight: '500'}}>Manila Capital Hub</td>
+                                        <td>{formatCurrency(856780)}</td>
+                                        <td>1,842</td>
+                                        <td>{formatCurrency(465)}</td>
+                                        <td><span className="status-badge active">Excellent</span></td>
+                                        <td>
+                                            <svg width="80" height="20" viewBox="0 0 80 20">
+                                                <polyline points="0,15 10,12 20,14 30,10 40,8 50,11 60,7 70,5 80,3" 
+                                                    fill="none" 
+                                                    stroke="#10b981" 
+                                                    strokeWidth="2"
+                                                />
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style={{fontWeight: '500'}}>Cebu Tech</td>
+                                        <td>{formatCurrency(742350)}</td>
+                                        <td>1,523</td>
+                                        <td>{formatCurrency(487)}</td>
+                                        <td><span className="status-badge active">Good</span></td>
+                                        <td>
+                                            <svg width="80" height="20" viewBox="0 0 80 20">
+                                                <polyline points="0,12 10,10 20,11 30,9 40,10 50,8 60,9 70,7 80,8" 
+                                                    fill="none" 
+                                                    stroke="#10b981" 
+                                                    strokeWidth="2"
+                                                />
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style={{fontWeight: '500'}}>Davao South</td>
+                                        <td>{formatCurrency(698420)}</td>
+                                        <td>1,387</td>
+                                        <td>{formatCurrency(503)}</td>
+                                        <td><span className="status-badge active">Good</span></td>
+                                        <td>
+                                            <svg width="80" height="20" viewBox="0 0 80 20">
+                                                <polyline points="0,10 10,8 20,9 30,7 40,6 50,8 60,5 70,4 80,3" 
+                                                    fill="none" 
+                                                    stroke="#10b981" 
+                                                    strokeWidth="2"
+                                                />
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td style={{fontWeight: '500'}}>Makati Central</td>
+                                        <td>{formatCurrency(612890)}</td>
+                                        <td>1,156</td>
+                                        <td>{formatCurrency(530)}</td>
+                                        <td><span className="status-badge warning">Needs Attention</span></td>
+                                        <td>
+                                            <svg width="80" height="20" viewBox="0 0 80 20">
+                                                <polyline points="0,8 10,10 20,12 30,11 40,13 50,12 60,14 70,13 80,15" 
+                                                    fill="none" 
+                                                    stroke="#f59e0b" 
+                                                    strokeWidth="2"
+                                                />
+                                            </svg>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+        
+        ReactDOM.render(<ScoutAnalyticsDashboard />, document.getElementById('root'));
+    </script>
+</body>
+</html>
