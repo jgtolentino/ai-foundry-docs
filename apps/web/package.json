@@ -21,10 +21,6 @@
     "recharts": "^2.12.7",
     "@supabase/supabase-js": "^2.45.0",
     "lucide-react": "^0.428.0",
-    "@suqi/ui": "workspace:*",
-    "@suqi/charts": "workspace:*",
-    "@suqi/core": "workspace:*",
-    "@suqi/data": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^20",
