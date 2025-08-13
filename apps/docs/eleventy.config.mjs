@@ -1,5 +1,5 @@
-import { appFilters } from "../shared/e11ty/filters.mjs"
-import { appData } from "../shared/e11ty/data.mjs";
+import { appFilters } from "../../shared/e11ty/filters.mjs"
+import { appData } from "../../shared/e11ty/data.mjs";
 import { readFileSync, existsSync } from 'node:fs';
 import { fileURLToPath } from 'node:url'
 import { join, dirname } from 'node:path';
