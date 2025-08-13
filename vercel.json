@@ -1,7 +1,7 @@
 {
   "version": 2,
   "installCommand": "pnpm -w install --frozen-lockfile",
-  "buildCommand": "pnpm -w --filter web build",
+  "buildCommand": "pnpm -w --filter suqi-web build",
   "outputDirectory": "apps/web/.next",
   "framework": "nextjs"
 }
