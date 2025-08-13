@@ -1,7 +1,7 @@
 {
   "version": 2,
-  "buildCommand": "pnpm run build",
-  "outputDirectory": "apps/docs/dist",
+  "buildCommand": "turbo run build --filter=@suqi/web",
+  "outputDirectory": "apps/web/.next",
   "installCommand": "pnpm install",
-  "framework": null
+  "framework": "nextjs"
 }
