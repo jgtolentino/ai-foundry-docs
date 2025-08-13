@@ -39,7 +39,7 @@ import {
   Legend,
   ScatterChart,
   Scatter,
-  TreeMap
+  Treemap
 } from 'recharts'
 
 // Product categories with performance data
@@ -567,7 +567,7 @@ export default function ProductsPage() {
                 <div className="p-4 border rounded-lg">
                   <h4 className="font-semibold text-purple-600 mb-2">Price Positioning</h4>
                   <p className="text-sm text-muted-foreground mb-2">
-                    L'Oreal to Maybelline switching driven by price (-18.7% impact)
+                    L&apos;Oreal to Maybelline switching driven by price (-18.7% impact)
                   </p>
                   <p className="text-xs font-medium">Recommended Action: Mid-tier brand introduction</p>
                 </div>

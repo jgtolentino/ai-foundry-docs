@@ -18,6 +18,8 @@ import {
   Activity,
   AlertCircle,
   CheckCircle,
+  TrendingUp,
+  TrendingDown,
   Clock,
   RefreshCw,
   BarChart3,
@@ -765,7 +767,7 @@ export default function DataSourcesPage() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium">Health Score Threshold</label>
-                    <Select defaultValue="70">
+                    <Select value="70">
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>
@@ -780,7 +782,7 @@ export default function DataSourcesPage() {
                   </div>
                   <div>
                     <label className="text-sm font-medium">Latency Threshold (ms)</label>
-                    <Select defaultValue="200">
+                    <Select value="200">
                       <SelectTrigger>
                         <SelectValue />
                       </SelectTrigger>

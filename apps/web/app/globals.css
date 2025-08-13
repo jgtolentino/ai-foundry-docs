@@ -1,10 +1,5 @@
-@import '@tabler/core/dist/css/tabler.min.css';
-@import '@tabler/core/dist/css/tabler-flags.min.css';
-@import '@tabler/core/dist/css/tabler-payments.min.css';
-@import '@tabler/core/dist/css/tabler-vendors.min.css';
-
 :root {
-  --suqi-primary: #3b82f6;
+  --suqi-primary: #2f7bff;
   --suqi-secondary: #8b5cf6;
   --suqi-dark: #1e293b;
 }

@@ -18,6 +18,7 @@ import {
   Clock,
   Eye,
   Settings,
+  Database,
   Share,
   BookOpen,
   BarChart3,

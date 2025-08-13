@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { IconSend, IconSparkles } from '@tabler/icons-react'
+import { Send, Sparkles } from 'lucide-react'
 
 const quickInsights = [
   {
@@ -101,7 +101,7 @@ export default function AskSuqiPage() {
                         onChange={(e) => setQuestion(e.target.value)}
                       />
                       <button type="submit" className="btn btn-primary">
-                        <IconSend size={20} />
+                        <Send size={20} />
                       </button>
                     </form>
                   </div>
@@ -112,7 +112,7 @@ export default function AskSuqiPage() {
                 <div className="card">
                   <div className="card-header">
                     <h3 className="card-title">
-                      <IconSparkles size={20} className="me-2" />
+                      <Sparkles size={20} className="me-2" />
                       Quick Insights
                     </h3>
                   </div>
