@@ -10,7 +10,8 @@
     "typecheck": "turbo run typecheck",
     "test": "turbo run test",
     "clean": "turbo run clean",
-    "start": "pnpm dev"
+    "start": "pnpm dev",
+    "prebuild": "node scripts/check-json.js"
   },
   "packageManager": "pnpm@10.12.4",
   "dependencies": {
